@@ -10,17 +10,17 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     // console.log(selectedDates[0]);
-      selectedDates = selectedDates[0];
-    //   console.log(selectedDates);
-      onInputDataCheck(selectedDates)
+      selectedDate = selectedDates[0];
+      console.log(selectedDate);
+      onInputDataCheck(selectedDate)
   },
 };
 
 let getElement = selector => document.querySelector(selector)
-let selectedDates = [];
+let selectedDate = [];
 let intervalID;
 
-console.log(selectedDates);
+console.log(selectedDate);
 
 // console.log(getElement('#datetime-picker'));
 // console.log(getElement('button[data-start]'));
@@ -29,9 +29,9 @@ console.log(selectedDates);
 // console.log(getElement('.value[data-minutes]'));
 // console.log(getElement('.value[data-seconds]'));
 
-flatpickr(getElement('#datetime-picker'), options)
+flatpickr(getElement('#datetime-picker'), options);
 
-getElement('button[data-start]').setAttribute('disabled', true);
+getElement('button[data-start]').setAttribute('disabled', true)
 
 getElement('button[data-start]').addEventListener('click', onTimerStart)
 
@@ -45,11 +45,35 @@ function onInputDataCheck(date) {
 }
 
 function onTimerStart(event) {
+  intervalID = setInterval(() => {
+    let deltaTime = selectedDate - Date.now()
 
+    if (deltaTime < 0) {
+      return
+    };
+
+    let timeData = convertMs(deltaTime);
+
+    onInterfaceAdd(timeData)
+    
+    getElement('button[data-start]').setAttribute('disabled', true)
+
+    // console.log(timeData);
+    // console.log(deltaTime);
+  }, 1000)
+  // console.log(intervalID);
 }
 
-function addLeadingZero(value) {
-    padStart()
+function onInterfaceAdd({ days, hours, minutes, seconds }) {
+
+  getElement('.value[data-days]').textContent = days;
+  getElement('.value[data-hours]').textContent = hours;
+  getElement('.value[data-minutes]').textContent = minutes;
+  getElement('.value[data-seconds]').textContent = seconds;
+}
+
+function addLeadingZero(data) {
+  return data.toString().padStart(2, '0');
 }
 
 function convertMs(ms) {
@@ -62,11 +86,11 @@ function convertMs(ms) {
   // Remaining days
   const days = Math.floor(ms / day);
   // Remaining hours
-  const hours = Math.floor((ms % day) / hour);
+  const hours = addLeadingZero(Math.floor((ms % day) / hour));
   // Remaining minutes
-  const minutes = Math.floor(((ms % day) % hour) / minute);
+  const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
   // Remaining seconds
-  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
 
   return { days, hours, minutes, seconds };
 }
