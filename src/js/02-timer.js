@@ -8,7 +8,7 @@ Notify.init({
   distance: '10px',
   opacity: 1,
   borderRadius: '10px',
-  timeout: 1000,
+  timeout: 3000,
 })
 
 const options = {
