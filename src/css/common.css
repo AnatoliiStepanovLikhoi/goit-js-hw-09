@@ -16,3 +16,48 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* timer styles */
+
+.flatpickr-input {
+  font-size: 20px;
+  font-weight: 400;
+  padding-left: 10px;
+
+  width: 250px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+#datetime-picker, [data-start] {
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 10px;
+}
+
+#datetime-picker, [data-stop] {
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 10px;
+}
+
+.timer{
+  display: flex;
+  flex-direction: columns;
+  gap: 20px;
+  justify-content: center;
+  text-align: center;
+  /* align-items: center; */
+}
+
+.value {
+  font-size: 32px;
+  font-weight: 600;
+  display: block;
+}
+
+.label {
+  text-transform: uppercase;
+}
+
+/* promises styles */
