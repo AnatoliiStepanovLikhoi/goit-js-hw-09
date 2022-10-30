@@ -33,7 +33,7 @@ let getElement = selector => document.querySelector(selector)
 let selectedDate = [];
 let intervalID;
 
-const flatpickr = flatpickr(getElement('#datetime-picker'), options);
+flatpickr(getElement('#datetime-picker'), options);
 
 // console.log(selectedDate);
 // console.log(getElement('#datetime-picker'));
@@ -77,7 +77,7 @@ function onTimerStop() {
   clearInterval(intervalID);
   onCounterClear();
   Notify.warning('Timer has stopped');
-  getElement('button[data-stop]').setAttribute('disabled', true)
+  getElement('button[data-stop]').setAttribute('disabled', true);
   // toggleButtonsActivity()
 };
 
