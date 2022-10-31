@@ -8,7 +8,7 @@ getElement('button[data-stop]').addEventListener('click', onColorChangeStop);
 let intervalID;
 
 function onBackgroundChangeRandom() {
-    getElement('body').style.background = getRandomHexColor();
+    getElement('body').style.backgroundColor = getRandomHexColor();
 };
 
 function getRandomHexColor() {

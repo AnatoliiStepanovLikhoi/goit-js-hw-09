@@ -1,4 +1,5 @@
 import flatpickr from "flatpickr";
+// import "flatpickr/dist/flatpickr.min.css";
 import "flatpickr/dist/themes/material_green.css";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -59,8 +60,9 @@ function toggleButtonsActivity() {
 function onInputDataCheck(date) {
     if (Date.now() > date) {
     return Notify.failure ("Please choose a date in the future")
-    }
-
+  }
+  // console.log(date);
+  // console.log(Date.now());
     Notify.success ("Please start the timer!")
     getElement('button[data-start]').removeAttribute('disabled');
 };
@@ -89,10 +91,8 @@ function onTimeSet() {
     };
 
     let timeData = convertMs(deltaTime);
-
     onInterfaceAdd(timeData)
-
-    // console.log(timeData);
+    console.log(timeData);
     // console.log(deltaTime);
 };
 
