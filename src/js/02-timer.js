@@ -40,10 +40,10 @@ flatpickr(getElement('#datetime-picker'), options);
 // console.log(getElement('#datetime-picker'));
 // console.log(getElement('button[data-start]'));
 // console.log(getElement('button[data-stop]'));
-// console.log(getElement('.value[data-days]'));
-// console.log(getElement('.value[data-hours]'));
-// console.log(getElement('.value[data-minutes]'));
-// console.log(getElement('.value[data-seconds]'));
+const daysRef = getElement('.value[data-days]')
+const hoursRef = getElement('.value[data-hours]')
+const minutesRef = getElement('.value[data-minutes]')
+const secondsRef = getElement('.value[data-seconds]')
 
 getElement('button[data-start]').addEventListener('click', onTimerStart)
 getElement('button[data-stop]').addEventListener('click', onTimerStop)
@@ -84,30 +84,30 @@ function onTimerStop() {
 };
 
 function onTimeSet() {
-  let deltaTime = selectedDate - Date.now()
+  let deltaTime = selectedDate - Date.now();
 
     if (deltaTime < 0) {
       return
     };
 
-    let timeData = convertMs(deltaTime);
-    onInterfaceAdd(timeData)
-    console.log(timeData);
+  let timeData = convertMs(deltaTime);
+  onInterfaceAdd(timeData);
+    // console.log(timeData);
     // console.log(deltaTime);
 };
 
 function onInterfaceAdd({ days, hours, minutes, seconds }) {
-  getElement('.value[data-days]').textContent = days;
-  getElement('.value[data-hours]').textContent = hours;
-  getElement('.value[data-minutes]').textContent = minutes;
-  getElement('.value[data-seconds]').textContent = seconds;
+  daysRef.textContent = days;
+  hoursRef.textContent = hours;
+  minutesRef.textContent = minutes;
+  secondsRef.textContent = seconds;
 };
 
 function onCounterClear() {
-  getElement('.value[data-days]').textContent = "00";
-  getElement('.value[data-hours]').textContent ="00";
-  getElement('.value[data-minutes]').textContent = "00";
-  getElement('.value[data-seconds]').textContent = "00";
+  daysRef.textContent = "00";
+  hoursRef.textContent ="00";
+  minutesRef.textContent = "00";
+  secondsRef.textContent = "00";
 };
 
 function addLeadingZero(data) {

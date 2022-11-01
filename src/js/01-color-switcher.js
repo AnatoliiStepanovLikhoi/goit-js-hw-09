@@ -1,7 +1,10 @@
 let getElement = selector => document.querySelector(selector)
 
-getElement('button[data-start]').addEventListener('click', onColorChangeStart);
-getElement('button[data-stop]').addEventListener('click', onColorChangeStop);
+const startRef = getElement('button[data-start]')
+const stopRef = getElement('button[data-stop]')
+
+startRef.addEventListener('click', onColorChangeStart);
+stopRef.addEventListener('click', onColorChangeStop);
 
 // console.log(getElement('button[data-stop]'));
 
@@ -17,11 +20,11 @@ function getRandomHexColor() {
 
 function onColorChangeStart (event) {
     intervalID = setInterval(onBackgroundChangeRandom, 1000);
-    getElement('button[data-start]').setAttribute('disabled', true)
+    startRef.setAttribute('disabled', true)
 };
 
 function onColorChangeStop(event) {
     clearInterval(intervalID);
-    getElement('button[data-start]').removeAttribute('disabled')
+    startRef.removeAttribute('disabled')
 };
 
